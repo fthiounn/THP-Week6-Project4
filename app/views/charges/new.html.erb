@@ -1,0 +1,22 @@
+<%= form_tag event_charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <div class="text-center m-5">
+      <h3>To continue, confirm a payment with our partner Stripe</h3>
+    <label class="amount mt-5">
+      <span>Amount: <%= @amount%> $</span>
+    </label>
+  </div>
+  </article>
+  <div class="text-center m-5">
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Ticket to <%= @event.title%> on the <%= @event.start_date.strftime("%h %d, %Y") %>"
+          data-amount="<%= @amount*100 %>"
+          data-locale="auto"></script>
+  </div>
+<% end %>

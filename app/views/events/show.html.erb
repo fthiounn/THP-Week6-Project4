@@ -1,0 +1,52 @@
+<% content_for :title, "Event page "+@event.title %>
+
+<!-- Junbotron User -->
+<div class="jumbotron">
+  <h1 class="display-4"><%= @event.title %></h1>
+</br></br>
+  <p class="display-4"><%= @event.start_date.strftime("%h %d, %Y") %></p>
+</div>
+
+
+<!-- Event info -->
+<div class ='align-middle'>
+  <div class="card mt-5 ml-5 mr-5 p-4">
+    <div class="card-body">
+    	<h5 class="card-title"><%= @event.title %> </h5>
+    	<p class="card-title"><strong>Producer : </strong><%= @admin.first_name %><%=" "%> <%=@admin.last_name %></p>
+    	<p class="card-title"><strong>Start date : </strong> <%= @event.start_date.strftime("%h %d %Y, %H:%M") %></p>
+      <p class="card-title"><strong>End date   : </strong> <%= get_end_date(@event).strftime("%h %d %Y, %H:%M") %> </p>
+      <p class="card-title"><strong>Duration : </strong><%= @event.duration %> min</p>
+    	<p class="card-title"><strong>Location : </strong><%= @event.location %></p>
+    	<p class="card-title"> <strong>Description : </strong></br></br> <%= @event.description %></p></br>  </br> 
+    	<p class="card-title"><strong>Event created the : </strong><%= @event.created_at.strftime("%d/%m/%Y") %></p>
+    	</br>	
+   		<p class="card-title"><span class="float-left"><strong>Price :</strong> <%= @event.price %>$</span>
+        <span class="float-right">
+        <% if user_signed_in?%>
+          <% if is_event_admin?(@admin)%>
+            You are administrator to this event | <%= link_to "Event Admin Page",attendances_path(event_id: @event.id) %>
+          <% elsif is_current_user_guest?(@event)%>
+            You are already registered for this event !
+          <% else %>
+            <%= link_to "Buy Now", new_event_charge_path(@event) , class: "btn btn-danger text-white float-right" %>
+          <% end %>
+        <% end %>
+      </span>
+      </p>
+      </br>
+   		<p  class="card-title float-left">This show has <%= @nb_guests %> participants</p></br></br>
+   		<% if user_signed_in?%>
+    	<% if is_event_admin?(@admin) %>
+        	<%= link_to 'Edit', edit_event_path(@event) %> |
+        	<%= link_to 'Destroy', event_path(@event), method: :delete, data: { confirm: 'Are you sure?' }  %>
+      	<% end %>
+      	<% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+

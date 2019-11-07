@@ -1,0 +1,30 @@
+<%= form_with(model: attendance, local: true) do |form| %>
+  <% if attendance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+
+      <ul>
+      <% attendance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_tag url_for(action: 'create'), method: "post" do%>
+   <br> </br>
+     <input class="col-md-6 form-control" type="text" name="title" placeholder="Entrer le titre de votre event"/>
+        <br> </br>
+     <input class="col-md-6 form-control" type="datetime-local" name="start_date" placeholder="Selectionner une date et l'heure de depart de votre event"/>
+     <br> </br>
+     <input class="col-md-6 form-control" type="number" step= 5 name="duration" placeholder="Selectionner la durée en minutes de votre event "/>
+     <br> </br>
+     <input class="col-md-6 form-control" type="text" name="description" placeholder="Entrer la description de votre event"/>
+     <br> </br>
+     <input class="col-md-6 form-control" type="number" name="price" min="1" max="1000" placeholder="Entrer le prix de votre event"/>
+     <br> </br>   
+     <input class="col-md-6 form-control" type="text" name="location" placeholder="Entrer le lieu de votre event"/>
+     <br> </br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

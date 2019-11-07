@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+a {
+	text-decoration: none !important;
+}
+a:hover {
+	background-color: transparent;
+	color: black;
+}
+.carousel-control-next:hover {
+	background-color: transparent;
+}
+.carousel-control-prev:hover {
+	background-color: transparent;
+}
