@@ -9,9 +9,9 @@
 require 'open-uri'
 require 'faker'
 
-nb_user = 200
+nb_user = 50
 nb_events = 50
-nb_guests = 500
+nb_guests = 200
 
 
 nb_user.times do |x|
