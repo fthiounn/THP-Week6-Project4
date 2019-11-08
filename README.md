@@ -1,9 +1,9 @@
-# THP - Week 6 - Project 3 - Eventbrite : thème bootstrap, et mise en ligne de photos
+# THP - Week 6 - Project 4 - Eventbrite : thème bootstrap, et mise en ligne de photos
 # Francois THIOUNN 
 
 # Notes & Use :
 
-- hosted on heroku at : 
+- hosted on heroku at : https://agile-eyrie-74777.herokuapp.com/
 
 # Projet : Eventbrite : thème bootstrap, et mise en ligne de photos
   
