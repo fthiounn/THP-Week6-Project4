@@ -38,6 +38,12 @@ class EventsController < ApplicationController
       admin_id: current_user.id)
 
     if @event.save # essaie de sauvegarder en base @gossip
+      if params[:avatar]
+        @event.avatar.attach(params[:avatar])
+      else
+        downloaded_image = open(Faker::LoremPixel.image(secure: false))
+        @event.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
+      end
         flash[:success] = "You successfuly created an event"
         redirect_to :controller => 'events', :action => 'show', id: @event.id
     else
@@ -52,7 +58,14 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update(event_params)
+      if @event.update(title: params[:title], 
+      description: params[:description],
+      location: params[:location],
+      price: params[:price],
+      start_date: params[:start_date],
+      duration: params[:duration],
+      admin_id: current_user.id)
+        @event.avatar.attach(params[:avatar])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else

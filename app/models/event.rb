@@ -9,6 +9,7 @@
   validates :location, presence: true
   has_many :attendances
   has_many :users, through: :attendances
+  has_one_attached :avatar
 
   def divisible_by_five
     if !(self.duration).nil?

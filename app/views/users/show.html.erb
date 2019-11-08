@@ -13,6 +13,10 @@
 <div class ='align-middle'>
   <div class="card mt-5 ml-5 mr-5 p-4">
     <div class="card-body">
+
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar, alt: 'avatar' %>
+      <% end  %>
       <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
       <p class="card-title"><strong>Bio : </strong><%= @user.description %></p>
       <p class="card-title"><strong>Mail : </strong> <%= @user.email %></p>
@@ -23,6 +27,7 @@
         <%= link_to "Edit your password", edit_user_registration_path(@user) %> |   
         <%= link_to 'Destroy', users_path(@event), method: :delete, data: { confirm: 'Are you sure?' }  %>
       <% end %>
+
     </div>
   </div>
 </div>

@@ -31,16 +31,22 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-
     @user = User.new(first_name: params[:first_name], 
                     last_name: params[:last_name],
                     description: params[:description],
                     email: params[:mail])
+    @user.avatar.attach(params[:avatar])
     if params[:password] != params[:confirmpassword]
       flash.now[:danger] = "Passwords must match !"
       render :action => 'new' 
     end
     if @user.save # essaie de sauvegarder en base @gossip
+      if params[:avatar]
+        @user.avatar.attach(params[:avatar])
+      else
+        downloaded_image = open(Faker::LoremPixel.image(secure: false))
+        @user.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
+      end
         flash[:success] = "You successfuly created your account"
         redirect_to :controller => 'users', :action => 'index'
     else
@@ -59,6 +65,7 @@ class UsersController < ApplicationController
                     last_name: params[:last_name],
                     description: params[:description],
                     email: params[:mail])
+    @user.avatar.attach(params[:avatar])
         flash[:success] = "You successfuly updated your account"
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }

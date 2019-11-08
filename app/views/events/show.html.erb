@@ -12,6 +12,9 @@
 <div class ='align-middle'>
   <div class="card mt-5 ml-5 mr-5 p-4">
     <div class="card-body">
+      <% if @event.avatar.attached? %>
+        <%= image_tag @event.avatar, alt: 'avatar' %>
+      <% end  %>
     	<h5 class="card-title"><%= @event.title %> </h5>
     	<p class="card-title"><strong>Producer : </strong><%= @admin.first_name %><%=" "%> <%=@admin.last_name %></p>
     	<p class="card-title"><strong>Start date : </strong> <%= @event.start_date.strftime("%h %d %Y, %H:%M") %></p>
