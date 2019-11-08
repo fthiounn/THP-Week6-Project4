@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
     require 'faker'
     
     def configure_devise_parameters
-      devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit(:first_name, :last_name, :description, :email, :password, :password_confirmation)}
-      devise_parameter_sanitizer.permit(:account_update) {|u| u.permit(:first_name, :last_name, :description, :email, :password, :password_confirmation)}
+      devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit(:first_name, :last_name, :description, :profile_picture, :email, :password, :password_confirmation)}
+      devise_parameter_sanitizer.permit(:account_update) {|u| u.permit(:first_name, :last_name, :description, :email, :profile_picture, :password, :password_confirmation)}
     end
 
 end

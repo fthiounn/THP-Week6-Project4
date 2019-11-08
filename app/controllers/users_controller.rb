@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       if params[:avatar]
         @user.avatar.attach(params[:avatar])
       else
-        downloaded_image = open(Faker::LoremPixel.image(secure: false))
+        downloaded_image = open("https://www.summtrust.org/assets/no_user-d20b95a32ee3c68169d053fdb778573da953604bd174825d34fd06ef58b75f8a.jpg")
         @user.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
       end
         flash[:success] = "You successfuly created your account"
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
                     description: params[:description],
                     email: params[:mail])
     @user.avatar.attach(params[:avatar])
-        flash[:success] = "You successfuly updated your account"
+        flash[:avatar] = "You successfuly updated your account"
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else

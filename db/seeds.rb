@@ -10,8 +10,8 @@ require 'open-uri'
 require 'faker'
 
 nb_user = 200
-nb_events = 100
-nb_guests = 600
+nb_events = 50
+nb_guests = 500
 
 
 nb_user.times do |x|
@@ -22,7 +22,7 @@ nb_user.times do |x|
       password: 'azerty',
       last_name: Faker::Name.last_name,
       description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false))
-  downloaded_image = open(Faker::LoremPixel.image(secure: false))
+  downloaded_image = open("https://picsum.photos/200/300")
   user.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
   puts "Seeding of User nb #{x}"
 end
@@ -40,7 +40,7 @@ nb_events.times do |x|
     price: rand(1..1000),
     title: Faker::Book.title,
     admin_id: User.all.sample.id)
-  downloaded_image = open(Faker::LoremPixel.image(secure: false))
+  downloaded_image = open("https://picsum.photos/200/300")
   event.avatar.attach(io: downloaded_image  , filename: "faker.jpg")
   puts "Seeding of Event nb #{x}"
 end

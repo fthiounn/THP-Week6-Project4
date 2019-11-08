@@ -36,7 +36,9 @@ class EventsController < ApplicationController
       start_date: params[:start_date],
       duration: params[:duration],
       admin_id: current_user.id)
-
+    
+    puts "-*-*"*500
+    puts params[:avatar].class
     if @event.save # essaie de sauvegarder en base @gossip
       if params[:avatar]
         @event.avatar.attach(params[:avatar])

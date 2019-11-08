@@ -15,7 +15,7 @@
     <div class="card-body">
 
       <% if @user.avatar.attached? %>
-        <%= image_tag @user.avatar, alt: 'avatar' %>
+        <%= image_tag @user.avatar, alt: 'profile_picture' %>
       <% end  %>
       <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
       <p class="card-title"><strong>Bio : </strong><%= @user.description %></p>
